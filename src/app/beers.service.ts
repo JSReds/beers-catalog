@@ -11,7 +11,6 @@ export class BeersService {
   getBeers(filters) {
     let params: URLSearchParams = new URLSearchParams();
     if(filters) {
-      console.log(filters)
       params.set('page', filters.page || 1);
       params.set('per_page', filters.per_page || 20);
       params.set('abv_lt', filters.abv_lt || 12);

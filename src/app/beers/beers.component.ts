@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BeersService } from '../beers.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-beers',
@@ -33,7 +34,15 @@ export class BeersComponent {
           this.param.maxPagesReached = true;
         }
       },
-      err => console.log("error"),
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', err.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          console.error(`GetBeers returned code ${err.status}`);
+        }
+      },
       () => {
         if (this.storedFilters) localStorage.removeItem('filters');
         this.loading = false
