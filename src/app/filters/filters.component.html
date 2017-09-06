@@ -9,7 +9,7 @@
         <label for="abvMinSelect">ABV min:</label>
         <select [(ngModel)]="filters.abv_gt" class="form-control" id="abvMinSelect">
           <option [ngValue]="null">Please Select</option>
-          <option *ngFor="let abv of param.abvLimitsList" [ngValue]="abv"> {{abv}}% </option>
+          <option [disabled]="filters.abv_lt && abv >= filters.abv_lt" *ngFor="let abv of param.abvLimitsList" [ngValue]="abv"> {{abv}}% </option>
         </select>
       </div>
       <div class="form-group col-12 col-sm-12 col-md-6">
@@ -27,7 +27,7 @@
         <label for="ibuMinSelect">IBU min:</label>
         <select [(ngModel)]="filters.ibu_gt" class="form-control" id="ibuMinSelect">
           <option [ngValue]="null">Please Select</option>
-          <option *ngFor="let ibu of param.ibuLimitsList" [ngValue]="ibu"> {{ibu}} </option>
+          <option [disabled]="filters.ibu_lt && ibu >= filters.ibu_lt" *ngFor="let ibu of param.ibuLimitsList" [ngValue]="ibu"> {{ibu}} </option>
         </select>
       </div>
       <div class="form-group col-12 col-sm-12 col-md-6">
