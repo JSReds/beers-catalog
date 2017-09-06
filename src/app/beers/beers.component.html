@@ -1,0 +1,48 @@
+<!-- Filters -->
+<app-filters [filters]="filters" (filtersChanged)="setFilters($event)"></app-filters>
+
+<!-- Beers List -->
+<div class="row main-container m-0" *ngIf="!loading && beers.length > 0">
+  <div class=" beer-card-container col-12 col-sm-6" *ngFor="let beer of beers">
+    <div class="card beer-card">
+      <div class="image-wrapper vertical-center-align">
+        <img class="card-img-top" [src]="beer.image_url" alt="Photo of a {{beer.name}}">
+      </div>
+      <div class="card-block">
+        <h4 class="card-title">{{beer.name}}</h4>
+        <p class="card-text">{{beer.description}}</p>
+      </div>
+      <div class="card-footer">
+        <span class="text-muted px-2"><b>ABV: {{beer.abv}}%</b></span>
+        <span class="text-muted px-2"><b>IBU: {{beer.ibu}}</b></span>
+        <a class="btn btn-primary float-right" (click)="storeFilters()" [routerLink]="['/beer-detail', beer.id]">Detail</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Beers list pagination -->
+  <div class="container-fluid text-center pagination-container">
+    <button type="button" class="btn btn-primary" [disabled]="filters.page == 1" (click)="prevPage()">< Prev</button>
+    <button type="button" class="btn btn-primary" [disabled]="param.maxPagesReached" (click)="nextPage()">Next ></button>
+  </div>
+  <div class="container-fluid text-center pagination-container">
+    <h5>Number of beers to show:</h5>
+    <button
+      type="button"
+      [ngClass]="{'btn-primary': numberOfContents != filters.per_page, 'btn-secondary': numberOfContents == filters.per_page}"
+      class="btn" *ngFor="let numberOfContents of param.per_page_array"
+      (click)="perPage(numberOfContents)">
+      {{numberOfContents}}
+    </button>
+  </div>
+</div>
+
+<!-- No result -->
+<div class="row main-container no-result-found-container m-0 my-auto text-center vertical-center-align" *ngIf="!loading && beers.length == 0">
+  <h3>NO RESULTS FOUND</h3>
+</div>
+
+<!-- Loader -->
+<div class="row loader-container vertical-center-align" *ngIf="loading">
+  <div class="loader"></div>
+</div>

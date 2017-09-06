@@ -1,0 +1,46 @@
+<div class="row filters-container m-0 pt-4" *ngIf="showFilters">
+  <div class="form-group col-12 col-sm-12 col-md-4">
+    <label for="beerName">Beer Name:</label>
+    <input [(ngModel)]="filters.beer_name" type="text" name="beerName" class="form-control" placeholder="Beer Name">
+  </div>
+  <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="row">
+      <div class="form-group col-12 col-sm-12 col-md-6">
+        <label for="abvMinSelect">ABV min:</label>
+        <select [(ngModel)]="filters.abv_gt" class="form-control" id="abvMinSelect">
+          <option [ngValue]="null">Please Select</option>
+          <option *ngFor="let abv of param.abvLimitsList" [ngValue]="abv"> {{abv}}% </option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-sm-12 col-md-6">
+        <label for="abvMaxSelect">ABV max:</label>
+        <select [(ngModel)]="filters.abv_lt" class="form-control" id="abvMaxSelect">
+          <option [ngValue]="null">Please Select</option>
+          <option [disabled]="abv <= filters.abv_gt" *ngFor="let abv of param.abvLimitsList" [ngValue]="abv"> {{abv}}% </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-12 col-md-4">
+    <div class="row">
+      <div class="form-group col-12 col-sm-12 col-md-6">
+        <label for="ibuMinSelect">IBU min:</label>
+        <select [(ngModel)]="filters.ibu_gt" class="form-control" id="ibuMinSelect">
+          <option [ngValue]="null">Please Select</option>
+          <option *ngFor="let ibu of param.ibuLimitsList" [ngValue]="ibu"> {{ibu}} </option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-sm-12 col-md-6">
+        <label for="ibuMaxSelect">IBU max:</label>
+        <select [(ngModel)]="filters.ibu_lt" class="form-control" id="ibuMaxSelect">
+          <option [ngValue]="null">Please Select</option>
+          <option [disabled]="ibu <= filters.ibu_gt" *ngFor="let ibu of param.ibuLimitsList" [ngValue]="ibu"> {{ibu}} </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid text-center pt-4 pb-2">
+    <button type="button" class="btn btn-primary pr-4 pl-4 mr-2" (click)="emitChanges()">Search</button>
+    <button type="button" class="btn btn-danger pr-4 pl-4 ml-2" (click)="resetFilters()">Reset</button>
+  </div>
+</div>

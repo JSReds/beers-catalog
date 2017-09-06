@@ -1,0 +1,18 @@
+<div class="page-header row m-0">
+  <!-- Back button -->
+  <div class="col-2 col-sm-2 col-md-1 col-lg-1 my-auto">
+    <button id="back-btn" class="btn btn-link float-left" (click)="backToPrevPage()" *ngIf="canGoBack">
+        <i class="material-icons">arrow_back</i>
+      </button>
+  </div>
+  <!-- App title -->
+  <div class="col-8 col-sm-8 col-md-10 col-lg-10 my-auto">
+    <h2>{{title}} <small class="d-none d-md-inline-block"> {{subtitle}}</small></h2>
+  </div>
+  <!-- filters button -->
+  <div class="col-2 col-sm-2 col-md-1 col-lg-1 my-auto">
+    <button id="filters-btn" class="btn btn-link float-right" (click)="toggleFilters()" *ngIf="!canGoBack">
+        <i class="material-icons">filter_list</i>
+      </button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.page-header {
+  height: 60px;
+  background: #222;
+  color: #fff;
+  text-align: center;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.btn i {
+  color: #fff;
+  font-size: 30px;
+}

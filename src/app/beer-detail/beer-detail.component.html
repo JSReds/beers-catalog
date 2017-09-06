@@ -1,0 +1,138 @@
+<div class="row main-container m-0" *ngIf="!loading">
+  <!--  beer Image -->
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 vertical-center-align">
+    <img class="beer-detail-image" [src]="beer.image_url" alt="Photo of a {{beer.name}}">
+  </div>
+
+  <!--  beer essential -->
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>{{beer.name}} <br><small>{{beer.tagline}}</small></h3>
+        <p>{{beer.description}}</p>
+      </div>
+    </div>
+
+    <!--  Ingredients section -->
+    <p class="text-center"><b> INGREDIENTS</b></p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <p class="text-center"><b> Hops Table </b></p>
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Name</th>
+              <th>Attribute</th>
+              <th>Amount</th>
+              <th>Add</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hop of beer.ingredients.hops">
+              <td>{{hop.name}}</td>
+              <td>{{hop.attribute}}</td>
+              <td>{{hop.amount.value}} {{hop.amount.unit | slice:0:1}}</td>
+              <td>{{hop.add}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+        <p class="text-center"><b> Malt Table </b></p>
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let malt of beer.ingredients.malt">
+              <td>{{malt.name}}</td>
+              <td>{{malt.amount.value}} {{malt.amount.unit}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--  Method section -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <p class="text-center"><b> METHOD </b></p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Fermentation temperature</td>
+                <td>{{beer.method.fermentation.temp.value}} {{beer.method.fermentation.temp.unit}}</td>
+              </tr>
+              <tr *ngFor="let mash_temp of beer.method.mash_temp">
+                <td>Mash Temperature / Duration</td>
+                <td>{{mash_temp.temp.value}} {{mash_temp.temp.unit}} / {{mash_temp.duration}} Minutes</td>
+              </tr>
+              <tr>
+                <td>Mash Twist</td>
+                <td>{{beer.method.twist}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+    <!--  General Info section -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="text-center"><b> GENERAL INFORMATIONS </b></p>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>ABV (Alcohol By Volume)</td>
+              <td>{{beer.abv}}%</td>
+            </tr>
+            <tr>
+              <td>Attenuation level</td>
+              <td>{{beer.attenuation_level}}</td>
+            </tr>
+            <tr>
+              <td>Boil volume</td>
+              <td>{{beer.boil_volume.value}}{{beer.boil_volume.units}}</td>
+            </tr>
+            <tr>
+              <td>EBC (European Brewery Convention)</td>
+              <td>{{beer.ebc}}</td>
+            </tr>
+            <tr>
+              <td>IBU (International Bitterness Units)</td>
+              <td>{{beer.ibu}}BU</td>
+            </tr>
+            <tr>
+              <td>PH (potential of hydrogen)</td>
+              <td>{{beer.ph}}</td>
+            </tr>
+            <tr>
+              <td>SRM (Standard Reference Method)</td>
+              <td>{{beer.srm}}</td>
+            </tr>
+            <tr>
+              <td>Target original garvity</td>
+              <td>{{beer.target_og}}</td>
+            </tr>
+            <tr>
+              <td>Target final gravity</td>
+              <td>{{beer.target_fg}}</td>
+            </tr>
+            <tr>
+              <td>Volume</td>
+              <td>{{beer.volume.value}} {{beer.volume.unit}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loader -->
+<div class="row loader-container vertical-center-align" *ngIf="loading">
+  <div class="loader"></div>
+</div>

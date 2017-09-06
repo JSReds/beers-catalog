@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  .beer-detail-image {
+    width: auto;
+    height: 200px;
+  }
+}
