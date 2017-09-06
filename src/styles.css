@@ -1,11 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-
+/*General Rules*/
 :disabled {
   cursor: not-allowed;
-}
-
-.main-container {
-  padding: 2%;
 }
 
 .vertical-center-align {
@@ -13,17 +8,19 @@
   justify-content: center;
   align-items: center;
 }
-
-.vertical-align {
-  display: flex;
-  align-items: center;
-}
+/*END General Rules*/
 
 /*Body*/
 body {
-  background: #c4ece5;
+  background: #f9f9f9;
 }
 /*END Body*/
+
+/*Main Container*/
+.main-container {
+  padding: 2%;
+}
+/*END Main Container*/
 
 /*Loader*/
 .loader-container {
